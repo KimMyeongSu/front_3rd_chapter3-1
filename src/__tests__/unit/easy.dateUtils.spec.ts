@@ -12,7 +12,7 @@ import {
 } from '../../utils/dateUtils';
 
 describe('getDaysInMonth', () => {
-  // 유닛테스트를 실행할때에는 , 나올수있는 경우의 수에 대한 의견을 취합해서 코드로작성한다?
+  // 유닛테스트를 실행할때에는 , 나올수있는 경우의 수에 대한 의견을 취합해서 코드로작성한다? => 혼자
   it('1월은 31일 수를 반환한다', () => {
     expect(getDaysInMonth(new Date().getFullYear(), 1)).toBe(31);
   });
