@@ -48,7 +48,6 @@ export function getWeeksAtMonth(currentDate: Date) {
       week = initWeek();
     }
   }
-
   return weeks;
 }
 
