@@ -74,29 +74,99 @@ it('검색어가 비어있을 때 모든 이벤트를 반환해야 한다', () =
 });
 
 it('검색어가 있을 때 해당 검색어를 포함하는 이벤트만 반환해야 한다', () => {
-  //TODO:여기 수정 필요
-  const currentDate = new Date();
+  const currentDate = new Date('2024-11-06');
   const { result } = renderHook(() => useSearch(event, currentDate, 'month'));
 
   act(() => {
     result.current.setSearchTerm('회의');
   });
+
+  const expectedEvents = event.filter(
+    (e) => e.title.includes('회의') || e.description.includes('회의') || e.location.includes('회의')
+  );
+
   expect(result.current.searchTerm).toBe('회의');
-  expect(result.current.filteredEvents).toEqual([]);
+  expect(result.current.filteredEvents).toEqual(expectedEvents);
 });
 
 it('검색어에 맞는 이벤트만 필터링해야 한다', () => {
-  const currentDate = new Date();
+  const currentDate = new Date('2024-11-06');
   const { result } = renderHook(() => useSearch(event, currentDate, 'month'));
-  expect(result.current.filteredEvents).toEqual([]);
+
+  act(() => {
+    result.current.setSearchTerm('회의');
+  });
+
+  const expectedEvents = event.filter(
+    (e) => e.title.includes('회의') || e.description.includes('회의') || e.location.includes('회의')
+  );
+
+  expect(result.current.searchTerm).toBe('회의');
+  expect(result.current.filteredEvents).toEqual(expectedEvents);
 });
 
 it('검색어가 제목, 설명, 위치 중 하나라도 일치하면 해당 이벤트를 반환해야 한다', () => {
-  const currentDate = new Date();
+  const currentDate = new Date('2024-11-06');
   const { result } = renderHook(() => useSearch(event, currentDate, 'month'));
-  expect(result.current.filteredEvents).toEqual([]);
+
+  // 제목에 포함된 경우
+  act(() => {
+    result.current.setSearchTerm('팀');
+  });
+  expect(result.current.filteredEvents).toContainEqual(
+    expect.objectContaining({ title: '팀 회의' })
+  );
+
+  // 설명에 포함된 경우
+  act(() => {
+    result.current.setSearchTerm('운동');
+  });
+  expect(result.current.filteredEvents).toContainEqual(
+    expect.objectContaining({ description: '주간 운동' })
+  );
+
+  // 위치에 포함된 경우
+  act(() => {
+    result.current.setSearchTerm('헬스장');
+  });
+  expect(result.current.filteredEvents).toContainEqual(
+    expect.objectContaining({ location: '헬스장' })
+  );
 });
 
-it('현재 뷰(주간/월간)에 해당하는 이벤트만 반환해야 한다', () => {});
+it('현재 뷰(주간/월간)에 해당하는 이벤트만 반환해야 한다', () => {
+  const currentDate = new Date('2024-11-06');
+  const { result } = renderHook(() => useSearch(event, currentDate, 'week'));
 
-it('검색어를 "회의"에서 "점심"으로 변경하면 필터링된 결과가 즉시 업데이트되어야 한다', () => {});
+  const expectedEvents = event.filter((e) => {
+    const eventDate = new Date(e.date);
+    return eventDate >= new Date('2024-11-04') && eventDate <= new Date('2024-11-10');
+  });
+
+  expect(result.current.filteredEvents).toEqual(expectedEvents);
+});
+
+it('검색어를 "회의"에서 "점심"으로 변경하면 필터링된 결과가 즉시 업데이트되어야 한다', () => {
+  const currentDate = new Date('2024-11-06');
+  const { result } = renderHook(() => useSearch(event, currentDate, 'month'));
+
+  act(() => {
+    result.current.setSearchTerm('회의');
+  });
+
+  const expectedEventsForMeeting = event.filter(
+    (e) => e.title.includes('회의') || e.description.includes('회의') || e.location.includes('회의')
+  );
+
+  expect(result.current.filteredEvents).toEqual(expectedEventsForMeeting);
+
+  act(() => {
+    result.current.setSearchTerm('점심');
+  });
+
+  const expectedEventsForLunch = event.filter(
+    (e) => e.title.includes('점심') || e.description.includes('점심') || e.location.includes('점심')
+  );
+
+  expect(result.current.filteredEvents).toEqual(expectedEventsForLunch);
+});
