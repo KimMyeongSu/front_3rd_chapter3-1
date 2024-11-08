@@ -5,7 +5,7 @@ import { Event } from '../../types.ts';
 
 const event: Event[] = [
   {
-    id: '2b7545a6-ebee-426c-b906-2329bc8d62bd',
+    id: '1',
     title: '팀 회의',
     date: '2024-11-20',
     startTime: '10:00',
@@ -17,7 +17,7 @@ const event: Event[] = [
     notificationTime: 1,
   },
   {
-    id: '09702fb3-a478-40b3-905e-9ab3c8849dcd',
+    id: '2',
     title: '점심 약속',
     date: '2024-11-21',
     startTime: '12:30',
@@ -29,7 +29,7 @@ const event: Event[] = [
     notificationTime: 1,
   },
   {
-    id: 'da3ca408-836a-4d98-b67a-ca389d07552b',
+    id: '3',
     title: '프로젝트 마감',
     date: '2024-11-25',
     startTime: '09:00',
@@ -41,7 +41,7 @@ const event: Event[] = [
     notificationTime: 1,
   },
   {
-    id: 'dac62941-69e5-4ec0-98cc-24c2a79a7f81',
+    id: '4',
     title: '생일 파티',
     date: '2024-11-28',
     startTime: '19:00',
@@ -53,7 +53,7 @@ const event: Event[] = [
     notificationTime: 1,
   },
   {
-    id: '80d85368-b4a4-47b3-b959-25171d49371f',
+    id: '5',
     title: '운동',
     date: '2024-11-22',
     startTime: '18:00',

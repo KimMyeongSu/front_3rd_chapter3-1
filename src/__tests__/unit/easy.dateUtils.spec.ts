@@ -11,6 +11,69 @@ import {
   isDateInRange,
 } from '../../utils/dateUtils';
 
+const event: Event[] = [
+  {
+    id: '1',
+    title: '팀 회의',
+    date: '2024-11-20',
+    startTime: '10:00',
+    endTime: '11:00',
+    description: '주간 팀 미팅',
+    location: '회의실 A',
+    category: '업무',
+    repeat: { type: 'none', interval: 0 },
+    notificationTime: 1,
+  },
+  {
+    id: '2',
+    title: '점심 약속',
+    date: '2024-11-21',
+    startTime: '12:30',
+    endTime: '13:30',
+    description: '동료와 점심 식사',
+    location: '회사 근처 식당',
+    category: '개인',
+    repeat: { type: 'none', interval: 0 },
+    notificationTime: 1,
+  },
+  {
+    id: '3',
+    title: '프로젝트 마감',
+    date: '2024-11-25',
+    startTime: '09:00',
+    endTime: '18:00',
+    description: '분기별 프로젝트 마감',
+    location: '사무실',
+    category: '업무',
+    repeat: { type: 'none', interval: 0 },
+    notificationTime: 1,
+  },
+  {
+    id: '4',
+    title: '생일 파티',
+    date: '2024-11-28',
+    startTime: '19:00',
+    endTime: '22:00',
+    description: '친구 생일 축하',
+    location: '친구 집',
+    category: '개인',
+    repeat: { type: 'none', interval: 0 },
+    notificationTime: 1,
+  },
+  {
+    id: '5',
+    title: '운동',
+    date: '2024-11-22',
+    startTime: '18:00',
+    endTime: '19:00',
+    description: '주간 운동',
+    location: '헬스장',
+    category: '개인',
+    repeat: { type: 'none', interval: 0 },
+    notificationTime: 1,
+  },
+];
+
 describe('getDaysInMonth', () => {
   // 유닛테스트를 실행할때에는 , 나올수있는 경우의 수에 대한 의견을 취합해서 코드로작성한다? => 혼자
   it('1월은 31일 수를 반환한다', () => {
